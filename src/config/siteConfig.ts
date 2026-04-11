@@ -7,6 +7,13 @@ export interface Product {
   readonly href?: string;
 }
 
+export interface OrderItem {
+  readonly id: string;
+  readonly name: string;
+  readonly price: string;
+  readonly unit: string;
+}
+
 export interface Bundle {
   readonly name: string;
   readonly tagline: string;
@@ -45,9 +52,23 @@ export const siteConfig = {
   cabinetLocation: "5 Cloughs Road, Ringwood",
   openingDays: "Saturday, Monday and Thursday",
   preOrderNotice: "Please pre-order at least 24 hours in advance.",
+  alwaysAvailable: [
+    {
+      id: "sourdough-loaf",
+      name: "Organic sourdough loaf",
+      price: "£4.00",
+      unit: "loaf",
+    },
+    {
+      id: "sourdough-bagels",
+      name: "Sourdough bagels",
+      price: "£4.00",
+      unit: "bag of 6",
+    },
+  ] as const satisfies readonly OrderItem[],
   hero: {
     heading: "Betty Botter's Bakery",
-    subheading: "Home bakery",
+    subheading: "Artisan Home Bakery",
     tagline:
       "Sourdough, focaccia, and cinnamon rolls — baked in small batches and stocked in the honesty cabinet by the front gate.",
     ctaLabel: "Pre-order",

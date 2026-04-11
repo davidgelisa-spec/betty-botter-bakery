@@ -1,6 +1,6 @@
 ---
 import { siteConfig } from "../config/siteConfig";
-const { products, collectionDays, formspreeId, payments } = siteConfig;
+const { alwaysAvailable, collectionDays, formspreeId, payments } = siteConfig;
 // NOTE: replace `formspreeId` in src/config/siteConfig.ts with your real Formspree form ID.
 const formAction = `https://formspree.io/f/${formspreeId}`;
 ---
@@ -19,7 +19,7 @@ const formAction = `https://formspree.io/f/${formspreeId}`;
     <form
       action={formAction}
       method="POST"
-      class="space-y-5 rounded-2xl bg-[--color-cream] p-8 shadow-sm"
+      class="space-y-6 rounded-2xl bg-[--color-cream] p-8 shadow-sm"
     >
       <div>
         <label for="name" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
@@ -47,39 +47,47 @@ const formAction = `https://formspree.io/f/${formspreeId}`;
         />
       </div>
 
-      <div>
-        <label for="item" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
-          Item
-        </label>
-        <select
-          id="item"
-          name="item"
-          required
-          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
-        >
-          {
-            products.map((product) => (
-              <option value={product.name}>
-                {product.name} — {product.price}
-              </option>
-            ))
-          }
-        </select>
-      </div>
+      <fieldset class="space-y-4">
+        <legend class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Sourdough <span class="font-normal text-[--color-crust]">(always available)</span>
+        </legend>
+        {
+          alwaysAvailable.map((item) => (
+            <div class="flex items-center justify-between gap-4 rounded-lg border border-[--color-wheat]/40 bg-white px-4 py-3">
+              <div class="min-w-0">
+                <p class="font-medium text-[--color-crust-dark]">{item.name}</p>
+                <p class="text-xs text-[--color-crust]">
+                  {item.price} · per {item.unit}
+                </p>
+              </div>
+              <input
+                id={`qty-${item.id}`}
+                name={`qty_${item.id}`}
+                type="number"
+                min="0"
+                value="0"
+                aria-label={`Quantity of ${item.name}`}
+                class="w-20 rounded-lg border border-[--color-wheat]/50 bg-white px-3 py-2 text-right text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+              />
+            </div>
+          ))
+        }
+      </fieldset>
 
       <div>
-        <label for="quantity" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
-          Quantity
+        <label for="weekly" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Anything from this week's menu?
         </label>
-        <input
-          id="quantity"
-          name="quantity"
-          type="number"
-          min="1"
-          value="1"
-          required
+        <textarea
+          id="weekly"
+          name="weekly"
+          rows="3"
+          placeholder="e.g. 2 cinnamon rolls, 1 brioche plait"
           class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
-        />
+        ></textarea>
+        <p class="mt-2 text-xs text-[--color-crust]">
+          See <a href="#menu" class="underline hover:text-[--color-crust-dark]">this week's menu</a> above.
+        </p>
       </div>
 
       <div>
