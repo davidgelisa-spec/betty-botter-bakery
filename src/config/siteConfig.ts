@@ -70,7 +70,7 @@ export const siteConfig = {
     heading: "Betty Botter's Bakery",
     subheading: "Artisan Home Bakery",
     tagline:
-      "Sourdough, focaccia, and cinnamon rolls — baked in small batches and stocked in the honesty cabinet by the front gate.",
+      "Sourdough and small-batch bakes, stocked in the honesty cabinet by the front gate.",
     ctaLabel: "Pre-order",
   },
   weeklyMenu: {
