@@ -1,0 +1,39 @@
+---
+import { siteConfig } from "../config/siteConfig";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const { weeklyMenu } = siteConfig;
+---
+
+<section id="menu" class="bg-[--color-cream-dark] px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-4xl">
+    <div class="mb-10 text-center">
+      <p
+        class="mb-3 text-sm uppercase tracking-[0.3em] text-[--color-wheat-dark]"
+      >
+        {weeklyMenu.eyebrow}
+      </p>
+      <h2 class="mb-3 text-4xl font-bold text-[--color-crust-dark] sm:text-5xl">
+        {weeklyMenu.heading}
+      </h2>
+      <p class="text-[--color-crust]">{weeklyMenu.subheading}</p>
+    </div>
+    <figure
+      class="overflow-hidden rounded-2xl bg-[--color-cream] shadow-lg ring-1 ring-[--color-wheat]/40"
+    >
+      <img
+        src={`${base}/images/${weeklyMenu.image}`}
+        alt={weeklyMenu.alt}
+        class="block w-full"
+      />
+    </figure>
+    <p class="mt-6 text-center text-sm text-[--color-crust]">
+      {weeklyMenu.footnote}
+      <a
+        href="#order"
+        class="ml-1 font-semibold text-[--color-crust-dark] underline hover:text-[--color-wheat-dark]"
+      >
+        Pre-order below
+      </a>.
+    </p>
+  </div>
+</section>

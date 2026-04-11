@@ -1,6 +1,7 @@
 ---
 import { siteConfig, type Step } from "../config/siteConfig";
 const steps: readonly Step[] = siteConfig.steps;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <section id="how-it-works" class="px-6 py-20 sm:py-28">
@@ -17,7 +18,7 @@ const steps: readonly Step[] = siteConfig.steps;
           <li class="relative overflow-hidden rounded-2xl border border-[--color-wheat]/40 bg-[--color-cream] text-center">
             {step.image && (
               <img
-                src={step.image}
+                src={`${base}/${step.image}`}
                 alt=""
                 class="h-40 w-full object-cover"
                 loading="lazy"

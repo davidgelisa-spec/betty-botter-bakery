@@ -4,6 +4,17 @@ export interface Product {
   readonly price: string;
   readonly emoji: string;
   readonly image?: string;
+  readonly href?: string;
+}
+
+export interface Bundle {
+  readonly name: string;
+  readonly tagline: string;
+  readonly description: string;
+  readonly contents: readonly string[];
+  readonly price: string;
+  readonly cadence: string;
+  readonly image?: string;
 }
 
 export interface Step {
@@ -11,6 +22,11 @@ export interface Step {
   readonly title: string;
   readonly description: string;
   readonly image?: string;
+}
+
+export interface GalleryPhoto {
+  readonly image: string;
+  readonly caption: string;
 }
 
 export interface PaymentMethod {
@@ -26,77 +42,159 @@ export const siteConfig = {
     "A home bakery offering fresh sourdough bread and baked goods from an honesty cabinet. Pre-order online for collection.",
   url: "https://bettybotter.example.com",
   formspreeId: "YOUR_FORMSPREE_ID", // TODO: replace with real Formspree form ID
-  cabinetLocation: "3 Orchard Lane, Little Ashford",
+  cabinetLocation: "Ringwood", // TODO: add full street address
   hero: {
-    heading: "Betty Botter",
+    heading: "Betty Botter's Bakery",
     subheading: "Home bakery",
     tagline:
       "Sourdough, focaccia, and cinnamon rolls — baked in small batches and stocked in the honesty cabinet by the front gate.",
     ctaLabel: "Pre-order",
   },
+  weeklyMenu: {
+    eyebrow: "This week",
+    heading: "What Betty's baking",
+    subheading:
+      "Betty's menu changes every week — here's what's coming out of the oven.",
+    image: "this-weeks-menu.jpg",
+    alt: "Betty Botter's menu for this week",
+    footnote: "See something you fancy?",
+  },
   about: {
     heading: "About",
     body:
-      "I'm Betty, and I bake for my neighbours from my kitchen in Little Ashford. Everything is made by hand in small batches using good flour and a long, slow ferment. Pre-order below, collect from the cabinet, and pay whichever way suits you.",
+      "Betty Botter is a small home bakery in Ringwood, baking for the neighbourhood. Everything is made by hand in small batches using good flour and a long, slow ferment. Pre-order below, collect from the honesty cabinet by the front gate, and pay whichever way suits you.",
   },
   products: [
     {
-      name: "Sourdough Loaf",
-      description: "Crisp crust, open crumb, 36-hour ferment.",
+      name: "Organic Sourdough Loaf",
+      description: "Crisp crust, open crumb, long slow ferment.",
       price: "£4.00",
       emoji: "🍞",
-      image: "/images/sourdough-loaf.jpg",
+      image: "images/sourdough-loaf.jpg",
     },
     {
-      name: "Rosemary Focaccia",
-      description: "Olive oil, flaky salt, fresh rosemary.",
-      price: "£3.50",
+      name: "Sourdough Bagels",
+      description: "Chocolate or plain — six to a bag.",
+      price: "6 for £4.00",
+      emoji: "🥯",
+      image: "images/sourdough-loaf.jpg",
+    },
+    {
+      name: "Sourdough Focaccia",
+      description: "Olive oil and flaky salt. Plain or with toppings.",
+      price: "from £4.00",
       emoji: "🌿",
+      image: "images/loaves-and-rolls.jpg",
     },
     {
-      name: "Cinnamon Rolls",
-      description: "Four rolls with a brown-butter glaze.",
-      price: "£5.00",
-      emoji: "🥐",
-      image: "/images/cinnamon-rolls.jpg",
-    },
-    {
-      name: "Brioche Plait",
+      name: "Easter Brioche Plait",
       description: "Soft, buttery braid with chocolate chips.",
       price: "£4.00",
       emoji: "🥖",
-      image: "/images/brioche.jpg",
+      image: "images/brioche.jpg",
     },
     {
-      name: "Chocolate Babka",
-      description: "Buttery dough swirled with dark chocolate.",
-      price: "£4.00",
-      emoji: "🍫",
-      image: "/images/babka.jpg",
+      name: "Cinnamon Rolls",
+      description: "Pillowy rolls with a sweet cream-cheese glaze.",
+      price: "£2.50 each",
+      emoji: "🥐",
+      image: "images/brioche.jpg", // TODO: replace with a real cinnamon rolls photo
     },
     {
-      name: "Weekly Bundle",
-      description: "Four sourdough loaves — great for freezing.",
-      price: "£14.00",
+      name: "Vegan Chocolate Cookies",
+      description: "Rich, chewy and entirely plant-based.",
+      price: "£1.50",
+      emoji: "🍪",
+      image: "images/chocolate-cookies.jpg",
+    },
+    {
+      name: "Bundles",
+      description: "Mix and match across the week — see all the options.",
+      price: "From £11",
       emoji: "🧺",
+      image: "images/loaves-and-rolls.jpg",
+      href: "bundles",
     },
   ] as const satisfies readonly Product[],
+  bundles: [
+    {
+      name: "The Weekend Box",
+      tagline: "Sweet and savoury for one weekend",
+      description:
+        "A loaf for Saturday lunch and something sweet for Sunday breakfast — collected together on one day.",
+      contents: [
+        "1 organic sourdough loaf",
+        "2 cinnamon rolls",
+        "4 vegan chocolate cookies",
+      ],
+      price: "£11.00",
+      cadence: "One collection",
+      image: "images/loaves-and-rolls.jpg",
+    },
+    {
+      name: "Sourdough Subscription",
+      tagline: "A fresh loaf every week",
+      description:
+        "One organic sourdough loaf collected each week for four weeks. Same day, same time, no need to re-order.",
+      contents: [
+        "4 × organic sourdough loaves",
+        "One per week, your choice of day",
+      ],
+      price: "£14.00",
+      cadence: "Weekly · 4 weeks",
+      image: "images/sourdough-loaf.jpg",
+    },
+    {
+      name: "The Sweet Box",
+      tagline: "Treats for the whole household",
+      description:
+        "Made for sharing. Brioche for breakfast, cinnamon rolls for elevenses, cookies for the lunchbox.",
+      contents: [
+        "1 Easter brioche plait",
+        "4 cinnamon rolls",
+        "6 vegan chocolate cookies",
+      ],
+      price: "£12.00",
+      cadence: "One collection",
+      image: "images/brioche.jpg",
+    },
+    {
+      name: "Family Freezer Stash",
+      tagline: "Bake once, eat all month",
+      description:
+        "Four organic sourdough loaves baked together — freeze three and enjoy one fresh.",
+      contents: ["4 × organic sourdough loaves"],
+      price: "£14.00",
+      cadence: "One collection",
+      image: "images/loaves-and-rolls.jpg",
+    },
+  ] as const satisfies readonly Bundle[],
+  gallery: [
+    { image: "images/sourdough-loaf.jpg", caption: "Organic sourdough loaf" },
+    { image: "images/loaves-and-rolls.jpg", caption: "A weekend bake" },
+    { image: "images/bakes-spread.jpg", caption: "A spread of fresh bakes" },
+    { image: "images/brioche.jpg", caption: "Easter brioche plait" },
+    { image: "images/chocolate-cookies.jpg", caption: "Vegan chocolate cookies" },
+    { image: "images/honesty-cabinet.jpg", caption: "The honesty cabinet" },
+  ] as const satisfies readonly GalleryPhoto[],
   steps: [
     {
       number: "01",
       title: "Order online",
       description: "Choose what you'd like and a collection day.",
+      image: "images/this-weeks-menu.jpg",
     },
     {
       number: "02",
       title: "Pay",
       description: "Bank transfer, PayPal, Stripe, or cash on collection.",
+      image: "images/brioche.jpg",
     },
     {
       number: "03",
       title: "Collect",
       description: "Pick up from the honesty cabinet on your chosen day.",
-      image: "/images/honesty-cabinet.jpg",
+      image: "images/honesty-cabinet.jpg",
     },
   ] as const satisfies readonly Step[],
   payments: [

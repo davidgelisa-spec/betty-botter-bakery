@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig, type Bundle } from "../config/siteConfig";
+
+const bundles: readonly Bundle[] = siteConfig.bundles;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<Layout
+  title={`Bundles — ${siteConfig.name}`}
+  description="Pick a Betty Botter bundle: weekly sourdough, sweet boxes, weekend treats and more."
+>
+  <main>
+    <section
+      class="relative flex min-h-[55vh] items-end overflow-hidden bg-[--color-crust-dark] px-6 py-20"
+    >
+      <img
+        src={`${base}/images/loaves-and-rolls.jpg`}
+        alt="A selection of Betty Botter's freshly baked sourdough and sweet bakes"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"
+      >
+      </div>
+      <div class="relative mx-auto w-full max-w-5xl">
+        <a
+          href={`${base}/`}
+          class="mb-6 inline-block text-sm uppercase tracking-[0.3em] text-[--color-wheat] hover:text-white"
+        >
+          ← Back to bakery
+        </a>
+        <h1
+          class="mb-6 text-5xl font-bold text-white drop-shadow-lg sm:text-6xl lg:text-7xl"
+        >
+          Bundles
+        </h1>
+        <p class="max-w-2xl text-lg text-white/90 drop-shadow sm:text-xl">
+          Mix and match Betty's bakes — collect them all at once or spread them
+          across a few weeks.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-[--color-cream] px-6 py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl space-y-16">
+        {
+          bundles.map((bundle, idx) => (
+            <article
+              class={`grid items-center gap-10 lg:grid-cols-2 lg:gap-14 ${idx % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
+            >
+              <div class="overflow-hidden rounded-2xl shadow-md">
+                {bundle.image && (
+                  <img
+                    src={`${base}/${bundle.image}`}
+                    alt={bundle.name}
+                    class="aspect-[4/5] w-full object-cover sm:aspect-[5/4]"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              <div>
+                <p class="mb-2 text-sm uppercase tracking-[0.3em] text-[--color-wheat-dark]">
+                  {bundle.cadence}
+                </p>
+                <h2 class="mb-3 text-3xl font-bold text-[--color-crust-dark] sm:text-4xl">
+                  {bundle.name}
+                </h2>
+                <p class="mb-5 text-lg italic text-[--color-crust]">
+                  {bundle.tagline}
+                </p>
+                <p class="mb-6 text-[--color-crust]">{bundle.description}</p>
+                <ul class="mb-8 space-y-2">
+                  {bundle.contents.map((item) => (
+                    <li class="flex items-start text-[--color-crust-dark]">
+                      <span
+                        aria-hidden="true"
+                        class="mr-3 mt-1 inline-block h-2 w-2 rounded-full bg-[--color-wheat-dark]"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div class="flex flex-wrap items-center gap-6">
+                  <p class="text-3xl font-bold text-[--color-crust-dark]">
+                    {bundle.price}
+                  </p>
+                  <a
+                    href={`${base}/#order`}
+                    class="inline-block rounded-full bg-[--color-crust] px-6 py-3 text-sm font-semibold text-[--color-cream] shadow-lg transition hover:bg-[--color-crust-dark] hover:shadow-xl"
+                  >
+                    Pre-order this bundle
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
