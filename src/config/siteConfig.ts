@@ -42,7 +42,9 @@ export const siteConfig = {
     "A home bakery offering fresh sourdough bread and baked goods from an honesty cabinet. Pre-order online for collection.",
   url: "https://bettybotter.example.com",
   formspreeId: "YOUR_FORMSPREE_ID", // TODO: replace with real Formspree form ID
-  cabinetLocation: "Ringwood", // TODO: add full street address
+  cabinetLocation: "5 Cloughs Road, Ringwood",
+  openingDays: "Saturday, Monday and Thursday",
+  preOrderNotice: "Please pre-order at least 24 hours in advance.",
   hero: {
     heading: "Betty Botter's Bakery",
     subheading: "Home bakery",
@@ -66,54 +68,34 @@ export const siteConfig = {
   },
   products: [
     {
-      name: "Organic Sourdough Loaf",
-      description: "Crisp crust, open crumb, long slow ferment.",
+      name: "Sourdough breads",
+      description:
+        "Organic sourdough loaves, long slow ferment. Baked fresh for each collection day.",
       price: "£4.00",
       emoji: "🍞",
-      image: "images/sourdough-loaf.jpg",
-    },
-    {
-      name: "Sourdough Bagels",
-      description: "Chocolate or plain — six to a bag.",
-      price: "6 for £4.00",
-      emoji: "🥯",
-      image: "images/sourdough-loaf.jpg",
-    },
-    {
-      name: "Sourdough Focaccia",
-      description: "Olive oil and flaky salt. Plain or with toppings.",
-      price: "from £4.00",
-      emoji: "🌿",
       image: "images/loaves-and-rolls.jpg",
     },
     {
-      name: "Easter Brioche Plait",
-      description: "Soft, buttery braid with chocolate chips.",
-      price: "£4.00",
-      emoji: "🥖",
+      name: "Sourdough bagels",
+      description: "Chocolate or plain. Six to a bag.",
+      price: "6 for £4.00",
+      emoji: "🥯",
+      image: "images/bakes-spread.jpg",
+    },
+    {
+      name: "Cakes & sweet bakes",
+      description:
+        "Brioche, focaccia, hot cross buns, cinnamon rolls and more — the selection changes weekly.",
+      price: "from £2.50",
+      emoji: "🥐",
       image: "images/brioche.jpg",
     },
     {
-      name: "Cinnamon Rolls",
-      description: "Pillowy rolls with a sweet cream-cheese glaze.",
-      price: "£2.50 each",
-      emoji: "🥐",
-      image: "images/brioche.jpg", // TODO: replace with a real cinnamon rolls photo
-    },
-    {
-      name: "Vegan Chocolate Cookies",
-      description: "Rich, chewy and entirely plant-based.",
+      name: "Cookies",
+      description: "Rich, chewy and usually vegan.",
       price: "£1.50",
       emoji: "🍪",
       image: "images/chocolate-cookies.jpg",
-    },
-    {
-      name: "Bundles",
-      description: "Mix and match across the week — see all the options.",
-      price: "From £11",
-      emoji: "🧺",
-      image: "images/loaves-and-rolls.jpg",
-      href: "bundles",
     },
   ] as const satisfies readonly Product[],
   bundles: [
@@ -142,7 +124,7 @@ export const siteConfig = {
       ],
       price: "£14.00",
       cadence: "Weekly · 4 weeks",
-      image: "images/sourdough-loaf.jpg",
+      image: "images/loaves-and-rolls.jpg",
     },
     {
       name: "The Sweet Box",
@@ -170,11 +152,10 @@ export const siteConfig = {
     },
   ] as const satisfies readonly Bundle[],
   gallery: [
-    { image: "images/sourdough-loaf.jpg", caption: "Organic sourdough loaf" },
-    { image: "images/loaves-and-rolls.jpg", caption: "A weekend bake" },
+    { image: "images/loaves-and-rolls.jpg", caption: "Fresh from the oven" },
     { image: "images/bakes-spread.jpg", caption: "A spread of fresh bakes" },
-    { image: "images/brioche.jpg", caption: "Easter brioche plait" },
-    { image: "images/chocolate-cookies.jpg", caption: "Vegan chocolate cookies" },
+    { image: "images/brioche.jpg", caption: "Sweet bakes" },
+    { image: "images/chocolate-cookies.jpg", caption: "Cookies" },
     { image: "images/honesty-cabinet.jpg", caption: "The honesty cabinet" },
   ] as const satisfies readonly GalleryPhoto[],
   steps: [
