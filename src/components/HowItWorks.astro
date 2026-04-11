@@ -1,0 +1,40 @@
+---
+import { siteConfig, type Step } from "../config/siteConfig";
+const steps: readonly Step[] = siteConfig.steps;
+---
+
+<section id="how-it-works" class="px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-14 text-center">
+      <h2 class="mb-3 text-4xl font-bold text-[--color-crust-dark] sm:text-5xl">
+        How It Works
+      </h2>
+      <p class="text-[--color-crust]">Three steps from order to pickup.</p>
+    </div>
+    <ol class="grid gap-8 sm:grid-cols-3">
+      {
+        steps.map((step) => (
+          <li class="relative overflow-hidden rounded-2xl border border-[--color-wheat]/40 bg-[--color-cream] text-center">
+            {step.image && (
+              <img
+                src={step.image}
+                alt=""
+                class="h-40 w-full object-cover"
+                loading="lazy"
+              />
+            )}
+            <div class="p-8">
+              <span class="mb-4 inline-block font-serif text-4xl font-bold text-[--color-sage-dark]">
+                {step.number}
+              </span>
+              <h3 class="mb-3 text-xl font-bold text-[--color-crust-dark]">
+                {step.title}
+              </h3>
+              <p class="text-sm text-[--color-crust]">{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

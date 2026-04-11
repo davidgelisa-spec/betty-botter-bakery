@@ -1,0 +1,46 @@
+---
+import { siteConfig, type Product } from "../config/siteConfig";
+const products: readonly Product[] = siteConfig.products;
+---
+
+<section id="products" class="bg-[--color-cream-dark] px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-14 text-center">
+      <h2 class="mb-3 text-4xl font-bold text-[--color-crust-dark] sm:text-5xl">
+        What's Baking
+      </h2>
+      <p class="text-[--color-crust]">This week's bakes</p>
+    </div>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        products.map((product) => (
+          <article class="flex flex-col overflow-hidden rounded-2xl bg-[--color-cream] shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+            {product.image ? (
+              <img
+                src={product.image}
+                alt={product.name}
+                class="h-56 w-full object-cover"
+                loading="lazy"
+              />
+            ) : (
+              <div class="flex h-56 items-center justify-center bg-[--color-wheat]/20 text-6xl">
+                <span aria-hidden="true">{product.emoji}</span>
+              </div>
+            )}
+            <div class="flex flex-1 flex-col p-6">
+              <h3 class="mb-2 text-xl font-bold text-[--color-crust-dark]">
+                {product.name}
+              </h3>
+              <p class="mb-4 flex-1 text-sm text-[--color-crust]">
+                {product.description}
+              </p>
+              <p class="text-lg font-semibold text-[--color-wheat-dark]">
+                {product.price}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

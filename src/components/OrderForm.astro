@@ -1,0 +1,143 @@
+---
+import { siteConfig } from "../config/siteConfig";
+const { products, collectionDays, formspreeId, payments } = siteConfig;
+// NOTE: replace `formspreeId` in src/config/siteConfig.ts with your real Formspree form ID.
+const formAction = `https://formspree.io/f/${formspreeId}`;
+---
+
+<section id="order" class="bg-[--color-sage]/15 px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-2xl">
+    <div class="mb-10 text-center">
+      <h2 class="mb-3 text-4xl font-bold text-[--color-crust-dark] sm:text-5xl">
+        Pre-order
+      </h2>
+      <p class="text-[--color-crust]">
+        Fill this in and we'll confirm by email. Orders are usually ready within 2–3 days.
+      </p>
+    </div>
+
+    <form
+      action={formAction}
+      method="POST"
+      class="space-y-5 rounded-2xl bg-[--color-cream] p-8 shadow-sm"
+    >
+      <div>
+        <label for="name" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Name
+        </label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="item" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Item
+        </label>
+        <select
+          id="item"
+          name="item"
+          required
+          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+        >
+          {
+            products.map((product) => (
+              <option value={product.name}>
+                {product.name} — {product.price}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+
+      <div>
+        <label for="quantity" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Quantity
+        </label>
+        <input
+          id="quantity"
+          name="quantity"
+          type="number"
+          min="1"
+          value="1"
+          required
+          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="collection" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Collection day
+        </label>
+        <select
+          id="collection"
+          name="collection"
+          required
+          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+        >
+          {collectionDays.map((day) => <option value={day}>{day}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label for="payment" class="mb-2 block text-sm font-semibold text-[--color-crust-dark]">
+          Preferred payment method
+        </label>
+        <select
+          id="payment"
+          name="payment"
+          required
+          class="w-full rounded-lg border border-[--color-wheat]/50 bg-white px-4 py-3 text-[--color-crust-dark] focus:border-[--color-wheat-dark] focus:outline-none"
+        >
+          {payments.map((method) => <option value={method.name}>{method.name}</option>)}
+        </select>
+        <p class="mt-2 text-xs text-[--color-crust]">
+          Payment details are below — pick whichever works for you.
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full rounded-full bg-[--color-crust] px-6 py-4 text-base font-semibold text-[--color-cream] transition hover:bg-[--color-crust-dark]"
+      >
+        Send pre-order
+      </button>
+    </form>
+
+    <div class="mt-10">
+      <h3 class="mb-4 text-center text-xl font-bold text-[--color-crust-dark]">
+        Payment details
+      </h3>
+      <ul class="space-y-3">
+        {
+          payments.map((method) => (
+            <li class="rounded-xl border border-[--color-wheat]/40 bg-[--color-cream] p-4">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <span class="font-semibold text-[--color-crust-dark]">{method.name}</span>
+                <span class="text-xs text-[--color-wheat-dark]">{method.details}</span>
+              </div>
+              <p class="mt-1 text-sm text-[--color-crust]">{method.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

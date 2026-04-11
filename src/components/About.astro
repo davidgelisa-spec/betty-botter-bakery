@@ -1,0 +1,15 @@
+---
+import { siteConfig } from "../config/siteConfig";
+const { about } = siteConfig;
+---
+
+<section id="about" class="px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-3xl text-center">
+    <h2 class="mb-6 text-4xl font-bold text-[--color-crust-dark] sm:text-5xl">
+      {about.heading}
+    </h2>
+    <p class="text-lg leading-relaxed text-[--color-crust]">
+      {about.body}
+    </p>
+  </div>
+</section>

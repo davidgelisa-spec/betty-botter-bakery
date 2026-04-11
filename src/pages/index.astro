@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Products from "../components/Products.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import OrderForm from "../components/OrderForm.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config/siteConfig";
+---
+
+<Layout title={`${siteConfig.name} — ${siteConfig.tagline}`} description={siteConfig.description}>
+  <main>
+    <Hero />
+    <About />
+    <Products />
+    <HowItWorks />
+    <OrderForm />
+  </main>
+  <Footer />
+</Layout>

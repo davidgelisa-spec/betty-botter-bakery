@@ -1,0 +1,41 @@
+---
+import { siteConfig } from "../config/siteConfig";
+const { hero } = siteConfig;
+---
+
+<section
+  class="relative overflow-hidden bg-[--color-cream-dark] px-6 py-24 sm:py-32"
+>
+  <img
+    src="/images/loaves-and-rolls.jpg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 bg-[--color-cream-dark]/70"
+  >
+  </div>
+  <div class="relative mx-auto max-w-3xl text-center">
+    <p
+      class="mb-4 text-sm uppercase tracking-[0.3em] text-[--color-wheat-dark]"
+    >
+      {hero.subheading}
+    </p>
+    <h1
+      class="mb-6 text-5xl font-bold text-[--color-crust-dark] sm:text-7xl"
+    >
+      {hero.heading}
+    </h1>
+    <p class="mb-10 text-lg text-[--color-crust] sm:text-xl">
+      {hero.tagline}
+    </p>
+    <a
+      href="#order"
+      class="inline-block rounded-full bg-[--color-crust] px-8 py-4 text-base font-semibold text-[--color-cream] shadow-lg transition hover:bg-[--color-crust-dark] hover:shadow-xl"
+    >
+      {hero.ctaLabel}
+    </a>
+  </div>
+</section>
