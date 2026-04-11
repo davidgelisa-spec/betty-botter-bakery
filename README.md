@@ -5,6 +5,7 @@ A simple static website for pre-ordering bread and baked goods via an honesty ca
 ## Features
 - List of available baked goods
 - Pre-order form
+- Online payment options
 - Contact information
 
 ## Setup
@@ -14,8 +15,13 @@ A simple static website for pre-ordering bread and baked goods via an honesty ca
 
 2. Update contact information in `index.html`
 
-3. For hosting (free options):
-   - **GitHub Pages**: Push this repo to GitHub and enable Pages
+3. Set up online payments:
+   - **PayPal**: Create a business account, generate buy now buttons, replace placeholders in `index.html`
+   - **Stripe (for card payments)**: Sign up, create payment links for each item, update the payment section with links
+   - **Bank Transfer**: Add your account details in the placeholder
+
+4. For hosting (free options):
+   - **GitHub Pages**: Enable Pages in repository settings
    - **Netlify**: Drag and drop the files or connect your repo
    - **Vercel**: Similar to Netlify
 
